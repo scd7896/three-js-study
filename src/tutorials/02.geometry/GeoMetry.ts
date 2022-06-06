@@ -22,7 +22,7 @@ class GeoMetry extends Template {
   }
 
   _setModel() {
-    const geometry = new THREE.BoxGeometry(1, 1, 1, 2, 2, 2);
+    const geometry = new THREE.SphereGeometry(0.3, 0.8, 32);
     const fillMaterial = new THREE.MeshPhongMaterial({ color: 0x515151 });
     const cube = new THREE.Mesh(geometry, fillMaterial);
 
