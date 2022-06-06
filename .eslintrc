@@ -12,7 +12,7 @@
     "node": true,
     "mocha": true
   },
-  "ignorePatterns": ["build/*", "dist/", "node_modules"],
+  "ignorePatterns": ["build/*", "dist/", "node_modules", "utils/threejs/*.js"],
   "rules": {
     "@typescript-eslint/ban-types": 0,
     "@typescript-eslint/explicit-module-boundary-types": 0,
