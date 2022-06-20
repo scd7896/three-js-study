@@ -35,7 +35,8 @@ abstract class Template {
     const height = this._container.clientHeight;
 
     const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 100);
-    camera.position.z = 2;
+    camera.position.x = -15;
+    camera.position.z = 15;
     this._camera = camera;
   }
 

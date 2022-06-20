@@ -31,3 +31,32 @@
 ## PlaneGeometry
 
 사각형 모양의 지오메트리입니다.
+
+## Shape
+
+일반 캔버스의 2D를 그리는 것과 매우 유사
+
+## ShapeGeometry
+
+그 캔버스로 그린 Shape를 폴리곤을 넣어서 지오메트리로 만듦
+
+## Curve
+
+일반 캔버스 2D에서 커브를 그리는 느낌으로 감
+
+## TubeGeometry
+
+Curve에서의 패쓰를 이용해서 원통을 만드는 지오메트리
+
+## LatheGeometry
+
+point들로 이루어진 선을 가지고 지오메트리를 만듦
+
+## ExtrudeBufferGeometry
+
+Shape를 이용해서
+베벨링을 해주는 지오메트리
+
+## TextGeometry
+
+폰트를 받아와서 텍스트를 지오메트리로 만든다
