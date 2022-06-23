@@ -1,5 +1,27 @@
 import Template from "../01.template/Template";
-import { BufferGeometry, Float32BufferAttribute, MathUtils, Points, PointsMaterial } from "three";
+import {
+  BackSide,
+  BoxGeometry,
+  BufferGeometry,
+  DoubleSide,
+  Float32BufferAttribute,
+  FrontSide,
+  Line,
+  LineBasicMaterial,
+  LineDashedMaterial,
+  LineLoop,
+  LineSegments,
+  MathUtils,
+  Mesh,
+  MeshBasicMaterial,
+  MeshLambertMaterial,
+  MeshPhongMaterial,
+  MeshPhysicalMaterial,
+  MeshStandardMaterial,
+  Points,
+  PointsMaterial,
+  SphereGeometry,
+} from "three";
 import { OrbitControls } from "../../utils/threejs/OrbitControls";
 
 class Material extends Template {
@@ -14,26 +36,22 @@ class Material extends Template {
   }
 
   _setupModel() {
-    const vertices = [];
-    for (let i = 0; i < 10000; i++) {
-      const x = MathUtils.randFloatSpread(100);
-      const y = MathUtils.randFloatSpread(100);
-      const z = MathUtils.randFloatSpread(100);
-
-      vertices.push(x, y, z);
-    }
-
-    const geometry = new BufferGeometry();
-    geometry.setAttribute("position", new Float32BufferAttribute(vertices, 3));
-
-    const material = new PointsMaterial({
+    const material = new MeshPhysicalMaterial({
       color: 0xff0000,
-      size: 1,
-      sizeAttenuation: true,
+      emissive: 0x000000,
+      roughness: 1,
+      metalness: 0,
+      clearcoat: 1,
+      clearcoatRoughness: 0,
     });
 
-    const points = new Points(geometry, material);
-    this._scene.add(points);
+    const box = new Mesh(new BoxGeometry(1, 1, 1), material);
+    box.position.set(-1, 0, 0);
+    this._scene.add(box);
+
+    const sphere = new Mesh(new SphereGeometry(0.7, 4, 4), material);
+    sphere.position.set(1, 0, 0);
+    this._scene.add(sphere);
   }
 }
 
