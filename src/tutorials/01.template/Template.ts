@@ -1,4 +1,5 @@
 import * as THREE from "three";
+import { AmbientLight } from "three";
 
 abstract class Template {
   protected _scene: THREE.Scene;
@@ -36,16 +37,21 @@ abstract class Template {
 
     const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 100);
 
-    camera.position.z = 7;
+    camera.position.z = 3;
     this._camera = camera;
+    this._scene.add(camera);
   }
 
   private _setupLight() {
+    const ambientLight = new AmbientLight(0xffffff, 0.2);
+    this._scene.add(ambientLight);
+
     const color = 0xffffff;
     const intensity = 1;
     const light = new THREE.DirectionalLight(color, intensity);
     light.position.set(-1, 2, 4);
-    this._scene.add(light);
+    // this._scene.add(light);
+    this._camera.add(light);
   }
 
   resize() {
