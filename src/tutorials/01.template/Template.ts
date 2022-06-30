@@ -4,6 +4,8 @@ import { AmbientLight } from "three";
 abstract class Template {
   protected _scene: THREE.Scene;
   protected _camera: THREE.PerspectiveCamera;
+  protected _light: any;
+  protected _lightHelper: any;
 
   private _renderer: THREE.WebGLRenderer;
 
@@ -14,6 +16,7 @@ abstract class Template {
     this._container = appContainer as HTMLDivElement;
 
     const renderer = new THREE.WebGLRenderer({ antialias: true, preserveDrawingBuffer: true });
+    renderer.shadowMap.enabled = true;
     renderer.setPixelRatio(window.devicePixelRatio);
 
     appContainer?.appendChild(renderer.domElement);
@@ -31,18 +34,20 @@ abstract class Template {
     requestAnimationFrame(this.render.bind(this));
   }
 
-  private _setupCamera() {
+  protected _setupCamera() {
     const width = this._container.clientWidth;
     const height = this._container.clientHeight;
 
     const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 100);
 
-    camera.position.z = 3;
+    // camera.position.z = 3;
+    camera.position.set(7, 7, 0);
+    camera.lookAt(0, 0, 0);
     this._camera = camera;
     this._scene.add(camera);
   }
 
-  private _setupLight() {
+  protected _setupLight() {
     const ambientLight = new AmbientLight(0xffffff, 0.2);
     this._scene.add(ambientLight);
 
