@@ -50,3 +50,31 @@ metalness: 금속성
 Mesh에 코팅을 넣을 수 있고, 실제 유리같은 효과도 표현이 가능함
 clearcoat: 코팅 정도
 clearcoatRoughness: 코팅에 대한 거칠기이다.
+
+# Texture
+
+메쉬에서 map에 넣으면 된다
+텍스처 객체는 이미지나 동영상을 넣을 수 있다
+
+filter: 원래 사용
+
+magFilter: 원래 이미지보다 크게 확대 할 경우 사용되는 필터
+minFilter: 원래 이미지보다 작게 렌더링 하게 될 경우 사용되는 필터
+
+mipmap이란 이미지에 비율에 맞춰서 미리 만들어 두는 것을 말한다.
+
+## NearestMipmapLinearFilter
+
+1. 크기가 가장 비슷한 mipmap 이미지 두개 선택
+2. 가장 가까운 픽셀을 두개에서 하나씩 취득
+3. 가중치 평균을 내서 최종 색상값을 뽑아냄
+
+## LinearMipmapNearestFilter
+
+크기가 가장가까운 mipmap을 1개를 가져와서 픽셀을 4개 취득후 선형 보간
+
+## LinearMipmapLinearFilter
+
+크기가 가장가까운 mipmap을 2개를 가져와서 픽셀을 4개 취득후 선형 보간
+
+Mipmap을 사용하는 것이 보통 더 렌더링 품질이 더 좋음 하지만 메모리 연산이 많이 들어가게 됨.

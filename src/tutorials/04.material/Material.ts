@@ -3,10 +3,12 @@ import {
   BackSide,
   BoxGeometry,
   BufferGeometry,
+  ClampToEdgeWrapping,
   DoubleSide,
   Float32BufferAttribute,
   FrontSide,
   Line,
+  LinearFilter,
   LineBasicMaterial,
   LineDashedMaterial,
   LineLoop,
@@ -18,9 +20,13 @@ import {
   MeshPhongMaterial,
   MeshPhysicalMaterial,
   MeshStandardMaterial,
+  MirroredRepeatWrapping,
+  NearestMipmapLinearFilter,
   Points,
   PointsMaterial,
+  RepeatWrapping,
   SphereGeometry,
+  TextureLoader,
 } from "three";
 import { OrbitControls } from "../../utils/threejs/OrbitControls";
 
@@ -36,14 +42,23 @@ class Material extends Template {
   }
 
   _setupModel() {
-    const material = new MeshPhysicalMaterial({
-      color: 0xff0000,
-      emissive: 0x000000,
-      roughness: 1,
-      metalness: 0,
-      clearcoat: 1,
-      clearcoatRoughness: 0,
+    const textureLoader = new TextureLoader();
+
+    const map = textureLoader.load("/public/textureTest.png", (texture) => {
+      texture.repeat.x = 1;
+      texture.repeat.y = 1;
+
+      texture.wrapS = ClampToEdgeWrapping;
+      texture.wrapT = ClampToEdgeWrapping;
+
+      texture.offset.x = 0;
+      texture.offset.y = 0;
+
+      texture.magFilter = LinearFilter;
+      texture.minFilter = NearestMipmapLinearFilter;
     });
+
+    const material = new MeshStandardMaterial({ map });
 
     const box = new Mesh(new BoxGeometry(1, 1, 1), material);
     box.position.set(-1, 0, 0);
